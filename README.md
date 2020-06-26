@@ -16,14 +16,16 @@ UNTIL population has converged<br/>
 STOP
 
 <h3>Task description</h3>
-* domain class Gene
-* domain class Chromosome
-* domain class Chain
-* domain class Pool
-* method createGene (random)
-* method createChromosome (random Genes)
-* method crossover (Chromosome)
-* method mutate (Chromosome)
-* method createChain (random Chromosomes)
-* describe fitness (what task is solved with genetic algorithm)
-* get result
+<ul>
+<li>domain class Gene</li>
+<li>domain class Chromosome</li>
+<li>domain class Chain</li>
+<li>domain class Pool</li>
+<li>method createGene (random)</li>
+<li>method createChromosome (random Genes)</li>
+<li>method crossover (Chromosome)</li>
+<li>method mutate (Chromosome)</li>
+<li>method createChain (random Chromosomes)</li>
+<li>describe fitness (what task is solved with genetic algorithm)</li>
+<li>get result</li>
+</ul>
