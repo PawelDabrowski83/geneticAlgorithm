@@ -38,4 +38,21 @@ public class ChromosomeTest {
                 )
         );
     }
+
+    @DisplayName("Should getNumber works")
+    @ParameterizedTest(name = "{index} => expected={0}, chromosome={1}")
+    @MethodSource("getNumberArgumentsProvider")
+    void getNumber(long expected, Chromosome chromosome) {
+        assertEquals(expected, chromosome.getNumber());
+    }
+    private static Stream<Arguments> getNumberArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(1, new Chromosome(List.of(Gene.ONE))),
+                Arguments.of(0, new Chromosome(List.of(Gene.ZERO))),
+                Arguments.of(7, new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ONE))),
+                Arguments.of(48, new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ZERO))),
+                Arguments.of(13, new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE))),
+                Arguments.of(31, new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ONE)))
+        );
+    }
 }
