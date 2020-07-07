@@ -125,4 +125,77 @@ public class ChromosomeUtilsTest {
 
         );
     }
+
+    @DisplayName("Should mutate work")
+    @ParameterizedTest(name = "{index} => expected={0}, chromosome={1}, seed={2}")
+    @MethodSource("mutateArgumentsProvider")
+    void mutate(Chromosome expected, Chromosome chromosome, int seed) {
+        Random random = new Random(seed);
+        assertEquals(expected, ChromosomeUtils.mutate(chromosome, random));
+    }
+    private static Stream<Arguments> mutateArgumentsProvider() {
+        return Stream.of(
+                Arguments.of( // 1
+                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO)),
+                        1
+                ),
+                Arguments.of( // 2
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO)),
+                        2
+                ),
+                Arguments.of( // 3
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO)),
+                        2
+                ),
+                Arguments.of( // 4
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO,
+                                Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE
+                        )),
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO,
+                                Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ONE
+                        )),
+                        2
+                ),
+                Arguments.of( // 5
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO,
+                                Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE
+                        )),
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO,
+                                Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ZERO
+                        )),
+                        3
+                ),
+                Arguments.of( // 6
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO,
+                                Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE
+                        )),
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO,
+                                Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE
+                        )),
+                        11
+                ),
+                Arguments.of( // 7
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO,
+                                Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE
+                        )),
+                        new Chromosome(List.of(
+                                Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO,
+                                Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE
+                        )),
+                        118
+                )
+
+        );
+    }
+
 }

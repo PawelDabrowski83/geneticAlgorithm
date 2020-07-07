@@ -23,4 +23,12 @@ public class ChromosomeUtils {
         temp.addAll(secondHalf);
         return new Chromosome(temp);
     }
+
+    public static Chromosome mutate(Chromosome chromosome, Random random) {
+        List<Gene> genes = new ArrayList<>(chromosome.genes);
+        int position = random.nextInt(genes.size());
+        Gene toMutate = Gene.ZERO.equals(genes.get(position)) ? Gene.ONE : Gene.ZERO;
+        genes.set(position, toMutate);
+        return new Chromosome(genes);
+    }
 }
