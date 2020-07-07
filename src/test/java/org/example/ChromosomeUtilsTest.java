@@ -29,4 +29,100 @@ public class ChromosomeUtilsTest {
                 Arguments.of(new Chromosome(List.of(Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE)), 6, 552157)
         );
     }
+
+    @DisplayName("Should crossover work")
+    @ParameterizedTest(name = "{index} => expected={0}, chromosome1={1}, chromosome2={2}")
+    @MethodSource("crossoverArgumentsProvider")
+    void crossover(Chromosome expected, Chromosome chromosome1, Chromosome chromosome2) {
+        assertEquals(expected, ChromosomeUtils.crossover(chromosome1, chromosome2));
+    }
+    private static Stream<Arguments> crossoverArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ONE))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ONE,
+                                Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE
+                        )),
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ONE,
+                                Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO
+                        )),
+                        new Chromosome(List.of(
+                                Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE,
+                                Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE
+                        ))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ONE,
+                                Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO
+                        )),
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO,
+                                Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO
+                        )),
+                        new Chromosome(List.of(
+                                Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE,
+                                Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO
+                        ))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ONE))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)
+                        ),
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ONE)
+                        ),
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)
+                        )
+                )
+
+        );
+    }
 }
