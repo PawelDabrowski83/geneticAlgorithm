@@ -55,7 +55,7 @@ public class ChromosomeUtilsTest {
                 ),
                 Arguments.of(
                         new Chromosome(List.of(Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)),
-                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ZERO)),
                         new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ONE, Gene.ONE, Gene.ZERO))
                 ),
                 Arguments.of(
@@ -100,7 +100,29 @@ public class ChromosomeUtilsTest {
                         new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE)),
                         new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)),
                         new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(Gene.ZERO, Gene.ONE, Gene.ONE)),
+                        new Chromosome(List.of(Gene.ZERO, Gene.ZERO)),
+                        new Chromosome(List.of(Gene.ONE, Gene.ONE, Gene.ONE))
+                ),
+                Arguments.of(
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)
+                        ),
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ZERO, Gene.ONE, Gene.ONE)
+                        ),
+                        new Chromosome(List.of(
+                                Gene.ONE, Gene.ONE, Gene.ZERO, Gene.ZERO, Gene.ZERO, Gene.ONE, Gene.ONE, Gene.ZERO)
+                        )
                 )
+
         );
     }
 }
