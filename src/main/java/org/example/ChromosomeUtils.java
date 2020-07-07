@@ -15,4 +15,12 @@ public class ChromosomeUtils {
         }
         return new Chromosome(genes);
     }
+
+    public static Chromosome crossover(Chromosome chromosome1, Chromosome chromosome2) {
+        List<Gene> firstHalf = chromosome1.genes.subList(0, chromosome1.genes.size() / 2);
+        List<Gene> secondHalf = chromosome2.genes.subList(chromosome2.genes.size() / 2, chromosome2.genes.size());
+        List<Gene> temp = new ArrayList<>(firstHalf);
+        temp.addAll(secondHalf);
+        return new Chromosome(temp);
+    }
 }
