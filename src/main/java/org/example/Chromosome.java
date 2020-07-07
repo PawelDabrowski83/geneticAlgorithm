@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Chromosome {
+public class Chromosome implements Solvable {
 
     List<Gene> genes;
 
@@ -49,5 +49,10 @@ public class Chromosome {
             counter++;
         }
         return sum;
+    }
+
+    @Override
+    public float checkFitness() {
+        return 0;
     }
 }

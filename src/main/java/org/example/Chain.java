@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.List;
 
-public class Chain {
+public class Chain implements Solvable {
 
     List<Chromosome> chromosomes;
 
@@ -30,5 +30,10 @@ public class Chain {
         return "Chain{" +
                 "chromosomes=" + chromosomes +
                 '}';
+    }
+
+    @Override
+    public float checkFitness() {
+        return 0;
     }
 }
